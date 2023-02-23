@@ -11,8 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Optional;
 
 @Log4j2
@@ -28,9 +26,8 @@ public class AddressController {
         this.userService = userService;
     }
 
-    //@PostMapping (value= "/zipcode/{zipcode}",produces= "application/Json")
-    @RequestMapping(value = "/zipcode/{zipcode}", method = RequestMethod.POST, consumes="application/json")
-    public ResponseEntity<Object> getZipCode(@PathVariable("zipcode") String zipcode ,
+     @PostMapping ("/zipcode/{zipcode}")
+     public ResponseEntity<Object> getZipCode(@PathVariable("zipcode") String zipcode ,
                                              @RequestBody @Valid UserDto userDto) {
 
         Optional<UserModel> userModelOptional = this.userService.findById(userDto.getUserId());
